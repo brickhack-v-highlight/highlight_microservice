@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 
 app = Flask(__name__)
 app.debug = False
@@ -27,9 +27,7 @@ def set_all_streams_inactive():
 @app.route('/is_active/<stream_name>')
 def is_active(stream_name):
     active_stream = open(ghetto_database, 'r').read()
-    return jsonify({
-        'is_active': stream_name == active_stream
-    })
+    return str(stream_name == active_stream)
 
 
 if __name__ == '__main__':
